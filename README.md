@@ -113,3 +113,34 @@ and then: [Play](https://play.jsgo.io/github.com/phrounz/go-game/src/test1) - [C
 ### Notes:
 
 Reminder: on Atom, Ctrl+Shift+M show preview for .md files like this one.
+
+### To make generate_data_go.pl work (to regenerate pictures for self-contained mode)
+
+#### On Windows
+
+ * Install [Strawberry Perl](http://strawberryperl.com/)
+ * Install [ImageMagick](https://imagemagick.org)
+ * hack `$IMAGEMAGICK_CMD_LINE_UTILITY` in the source code
+```
+cd ./src/test1
+go get https://github.com/hajimehoshi/file2byteslice
+go build https://github.com/hajimehoshi/file2byteslice
+perl generate_data_go.pl
+```
+
+#### On Linux
+
+ * Perl should already be installed
+ * Install ImageMagick
+```
+# on redhat-like distrib (e.g. Fedora)
+dnf install ImageMagick
+```
+ * hack `$IMAGEMAGICK_CMD_LINE_UTILITY` in the source code, replace by 'magick'
+ * get file2byteslice
+ ```
+cd ./src/test1
+go get https://github.com/hajimehoshi/file2byteslice
+go build https://github.com/hajimehoshi/file2byteslice
+perl generate_data_go.pl
+```
