@@ -3,6 +3,8 @@
 
 Now working with ebiten v2!
 
+See [go-game-old](https://github.com/phrounz/go-game-old) for the previous version.
+
 ### Install a full environment from scratch
 
 Install those:
