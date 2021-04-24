@@ -10,7 +10,7 @@ import (
 )
 
 func loadImageFromFile(filepath string) *ebiten.Image {
-	var img, _, err = ebitenutil.NewImageFromFile(filepath)
+	var img, _, err = ebitenutil.NewImageFromFile(filepath, ebiten.FilterDefault)
 	if err != nil {
 		log.Fatal(err)
 	}

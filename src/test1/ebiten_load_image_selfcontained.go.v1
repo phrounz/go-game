@@ -26,9 +26,9 @@ func loadImageFromFile(filepath string) *ebiten.Image {
 	if err1 != nil {
 		log.Fatal("main: " + err1.Error())
 	}
-	var img = /*, err2*/ ebiten.NewImageFromImage(imgTmp)
-	// if err2 != nil {
-	// 	log.Fatal("main: " + err2.Error())
-	// }
+	var img, err2 = ebiten.NewImageFromImage(imgTmp, ebiten.FilterDefault)
+	if err2 != nil {
+		log.Fatal("main: " + err2.Error())
+	}
 	return img
 }
