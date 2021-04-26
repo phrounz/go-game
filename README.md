@@ -1,31 +1,22 @@
 
-## go-game
+# go-game
 
 Now working with ebiten v2!
 
 See [go-game-old](https://github.com/phrounz/go-game-old) for the previous version.
 
-### Install a full environment from scratch
+## Install dependancies
 
 Install those:
- * Atom.
  * Golang
  * Git
  * GitHub Desktop
-
-Install Atom packages with Ctrl+, -> Install:
-
-```
-go-plus
-minimap
-```
 
 Run in a terminal:
 ```
 go get github.com/hajimehoshi/ebiten
 go get -u github.com/dave/wasmgo
 ##(not useful/working?) go get -u github.com/gopherjs/gopherwasm
-go get -u github.com/go-delve/delve/cmd/dlv # if you want the dlv debugger
 ```
 
 You may also need those dependancies on Linux:
@@ -37,18 +28,21 @@ sudo apt-get install libXcursor-dev libXinerama-dev libXi-dev
 
 go get github.com/golang/freetype/truetype
 go get golang.org/x/image/font
-go build github.com/go-delve/delve/cmd/dlv # and put ./dlv into your $PATH
 ```
 
 More info:
  * https://rominirani.com/setup-go-development-environment-with-atom-editor-a87a12366fcf
  * https://ebiten.org/helloworld.html
 
-### Run as an application
+## Run as an application
 
-#### Debug
+### Debug
 
 ```
+# install the debugger
+go get -u github.com/go-delve/delve/cmd/dlv # if you want the dlv debugger
+go build github.com/go-delve/delve/cmd/dlv # and put ./dlv into your $PATH
+
 cd ./src/ludumdare44
 dlv debug
 
@@ -59,7 +53,7 @@ dlv debug
 Or press F5 while in Atom on the main.go file tab, and select config "Debug"
 (AFAIK, must have been run in the console once before that.)
 
-#### Build on Windows
+### Build on Windows
 
 ```
 # version depending of the data/ directory
@@ -69,7 +63,7 @@ cd src\ludumdare44 && go build -tags USE_WINSYSTEMMETRICS && ludumdare44.exe
 go build -o ./release/ludumdare44.exe -tags "USE_SELFCONTAINED_MODE USE_WINSYSTEMMETRICS" ./src/ludumdare44 && .\release\ludumdare44.exe
 ```
 
-#### Build on Linux
+### Build on Linux
 
 ```
 # version depending of the data/ directory
@@ -79,11 +73,11 @@ cd ./src/ludumdare44 && go build && ./ludumdare44
 go build -o ./release/ludumdare44 -tags USE_SELFCONTAINED_MODE ./src/ludumdare44 && ./release/ludumdare44
 ```
 
-### Build as a web page
+## Build as a web page
 
 [More info](https://ebiten.org/documents/webassembly.html)
 
-#### Build as a web page (new)
+### Build as a web page (new)
 ```
 # on linux:
 GOOS=js GOARCH=wasm go build -tags USE_SELFCONTAINED_MODE -o ./web_release/test.wasm ./src/ludumdare44
@@ -102,7 +96,7 @@ go build -tags USE_SELFCONTAINED_MODE -o ./web_release/test.wasm ./src/ludumdare
  * Click on Play!
  * Wait a minute
 
-#### Build as a web page (old - not working)
+### Build as a web page (old - not working)
 
 ```
 cd ./src/ludumdare44
@@ -114,13 +108,9 @@ wasmgo serve -f "-tags USE_SELFCONTAINED_MODE"
 Or Build as a web page, directly with editable code: (**Warning: Not working, play.jsgo.io services have been shut down, so it does not work any more.**) First commit on a public repository (e.g. https://github.com/phrounz/go-game )
 and then: [Play](https://play.jsgo.io/github.com/phrounz/go-game/src/ludumdare44) - [Compile](https://compile.jsgo.io/github.com/phrounz/go-game/src/ludumdare44) - [Run](https://jsgo.io/github.com/phrounz/go-game/src/ludumdare44)
 
-### Notes:
+## To make generate_data_go.pl work (to regenerate pictures for self-contained mode)
 
-Reminder: on Atom, Ctrl+Shift+M show preview for .md files like this one.
-
-### To make generate_data_go.pl work (to regenerate pictures for self-contained mode)
-
-#### On Windows
+### On Windows
 
  * Install [Strawberry Perl](http://strawberryperl.com/)
  * Install [ImageMagick](https://imagemagick.org)
@@ -132,7 +122,7 @@ go build https://github.com/hajimehoshi/file2byteslice
 perl generate_data_go.pl
 ```
 
-#### On Linux
+### On Linux
 
  * Perl should already be installed
  * Install ImageMagick
@@ -148,3 +138,16 @@ go get https://github.com/hajimehoshi/file2byteslice
 go build https://github.com/hajimehoshi/file2byteslice
 perl generate_data_go.pl
 ```
+
+## Install a full Atom environment to develop:
+
+Install Atom.
+
+Install Atom packages with Ctrl+, -> Install:
+
+```
+go-plus
+minimap
+```
+
+Reminder: on Atom, Ctrl+Shift+M show preview for .md files like this one.
