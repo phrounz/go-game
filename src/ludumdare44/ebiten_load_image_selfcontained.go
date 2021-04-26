@@ -10,7 +10,7 @@ import (
 	// IMPORTANT: path for local tests: replace to build in local with -tags USE_SELFCONTAINED_MODE
 	//"./data_go"
 	// IMPORTANT: path for JSGO:
-	//"github.com/phrounz/go-game/src/test1/data_go"
+	//"github.com/phrounz/go-game/src/ludumdare44/data_go"
 	"./data_go"
 
 	"github.com/hajimehoshi/ebiten"

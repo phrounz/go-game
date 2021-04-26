@@ -49,7 +49,7 @@ More info:
 #### Debug
 
 ```
-cd ./src/test1
+cd ./src/ludumdare44
 dlv debug
 
 (dlv) continue
@@ -63,20 +63,20 @@ Or press F5 while in Atom on the main.go file tab, and select config "Debug"
 
 ```
 # version depending of the data/ directory
-cd ./src/test1 && go build && test1.exe
+cd src\ludumdare44 && go build -tags USE_WINSYSTEMMETRICS && ludumdare44.exe
 
 # self-contained version
-go build -tags USE_SELFCONTAINED_MODE ./src/test1 && test1.exe
+go build -o ./release/ludumdare44.exe -tags "USE_SELFCONTAINED_MODE USE_WINSYSTEMMETRICS" ./src/ludumdare44 && .\release\ludumdare44.exe
 ```
 
 #### Build on Linux
 
 ```
 # version depending of the data/ directory
-cd ./src/test1 && go build && ./test1
+cd ./src/ludumdare44 && go build && ./ludumdare44
 
 # self-contained version
-go build -tags USE_SELFCONTAINED_MODE ./src/test1 && ./test1
+go build -o ./release/ludumdare44 -tags USE_SELFCONTAINED_MODE ./src/ludumdare44 && ./release/ludumdare44
 ```
 
 ### Build as a web page
@@ -85,8 +85,14 @@ go build -tags USE_SELFCONTAINED_MODE ./src/test1 && ./test1
 
 #### Build as a web page (new)
 ```
-GOOS=js GOARCH=wasm go build -tags USE_SELFCONTAINED_MODE -o ./web_release/test.wasm ./src/test1
+# on linux:
+GOOS=js GOARCH=wasm go build -tags USE_SELFCONTAINED_MODE -o ./web_release/test.wasm ./src/ludumdare44
 firefox web_release
+
+# on windows:
+set GOOS=js
+set GOARCH=wasm
+go build -tags USE_SELFCONTAINED_MODE -o ./web_release/test.wasm ./src/ludumdare44
 ```
  * To make it work on recent versions of Firefox (at least on local tests), 
     you need to access `about:config` in the URL 
@@ -99,16 +105,14 @@ firefox web_release
 #### Build as a web page (old - not working)
 
 ```
-cd ./src/test1
-wasmgo serve
+cd ./src/ludumdare44
+go build github.com/dave/wasmgo
+wasmgo serve -f "-tags USE_SELFCONTAINED_MODE"
 # While it is running, open Firefox to the url: http://localhost:8080/
 ```
 
-#### Build as a web page, directly with editable code (old - not working):
-
-**Play.jsgo.io services have been shut down, so it does not work any more.**
- First commit on a public repository (e.g. https://github.com/phrounz/go-game )
-and then: [Play](https://play.jsgo.io/github.com/phrounz/go-game/src/test1) - [Compile](https://compile.jsgo.io/github.com/phrounz/go-game/src/test1) - [Run](https://jsgo.io/github.com/phrounz/go-game/src/test1)
+Or Build as a web page, directly with editable code: (**Warning: Not working, play.jsgo.io services have been shut down, so it does not work any more.**) First commit on a public repository (e.g. https://github.com/phrounz/go-game )
+and then: [Play](https://play.jsgo.io/github.com/phrounz/go-game/src/ludumdare44) - [Compile](https://compile.jsgo.io/github.com/phrounz/go-game/src/ludumdare44) - [Run](https://jsgo.io/github.com/phrounz/go-game/src/ludumdare44)
 
 ### Notes:
 
@@ -122,7 +126,7 @@ Reminder: on Atom, Ctrl+Shift+M show preview for .md files like this one.
  * Install [ImageMagick](https://imagemagick.org)
  * hack `$IMAGEMAGICK_CMD_LINE_UTILITY` in the source code
 ```
-cd ./src/test1
+cd ./src/ludumdare44
 go get https://github.com/hajimehoshi/file2byteslice
 go build https://github.com/hajimehoshi/file2byteslice
 perl generate_data_go.pl
@@ -139,7 +143,7 @@ dnf install ImageMagick
  * hack `$IMAGEMAGICK_CMD_LINE_UTILITY` in the source code, replace by 'magick'
  * get file2byteslice
  ```
-cd ./src/test1
+cd ./src/ludumdare44
 go get https://github.com/hajimehoshi/file2byteslice
 go build https://github.com/hajimehoshi/file2byteslice
 perl generate_data_go.pl
